@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/571090727653504291/dc9ebfa28d284c1a9651677da3e6b287/artifacts
+end_time: 1749485622479
+entry_point_name: ''
+experiment_id: '571090727653504291'
+lifecycle_stage: active
+run_id: dc9ebfa28d284c1a9651677da3e6b287
+run_name: elastic_search_752_13
+run_uuid: dc9ebfa28d284c1a9651677da3e6b287
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749485523111
+status: 3
+tags: []
+user_id: Aditia Prabowo

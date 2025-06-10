@@ -1,0 +1,14 @@
+digest: 5bf2cd7a
+name: dataset
+profile: '{"num_rows": 40646, "num_elements": 447106}'
+schema: '{"mlflow_colspec": [{"type": "double", "name": "Age", "required": true},
+  {"type": "long", "name": "Credit_Mix", "required": true}, {"type": "long", "name":
+  "Payment_of_Min_Amount", "required": true}, {"type": "long", "name": "Payment_Behaviour",
+  "required": true}, {"type": "double", "name": "pc1_1", "required": true}, {"type":
+  "double", "name": "pc1_2", "required": true}, {"type": "double", "name": "pc1_3",
+  "required": true}, {"type": "double", "name": "pc1_4", "required": true}, {"type":
+  "double", "name": "pc1_5", "required": true}, {"type": "double", "name": "pc2_1",
+  "required": true}, {"type": "double", "name": "pc2_2", "required": true}]}'
+source: '{"tags": {"mlflow.user": "Aditia Prabowo", "mlflow.source.name": "modelling.py",
+  "mlflow.source.type": "LOCAL", "mlflow.source.git.commit": "6ea57ea316d9a6184830e4677c37e4d98403adbb"}}'
+source_type: code
