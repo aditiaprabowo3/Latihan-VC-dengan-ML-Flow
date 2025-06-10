@@ -1,14 +1,14 @@
 
 name: latihan-cs-mlflow
- 
+
 python_env: requirements.txt
- 
+
 entry_points:
   main:
     parameters:
       n_estimators: {type: int, default: 505}
       max_depth: {type: int, default: 35}
-      dataset : {type: string, default: "train_pca.csv"}
+      dataset: {type: str, default: "train_pca.csv"}
     command: "python modelling.py {n_estimators} {max_depth} {dataset}"
 
 # Kode di atas merupakan file konfigurasi MLflow Project yang berfungsi untuk mendefinisikan dan mengatur cara menjalankan proyek machine learning secara otomatis menggunakan MLflow Pipelines atau MLflow CLI. Tujuan utama dari file ini adalah untuk menyediakan struktur standar agar proyek dapat dijalankan di berbagai lingkungan dengan parameter yang terdefinisi sempurna.
