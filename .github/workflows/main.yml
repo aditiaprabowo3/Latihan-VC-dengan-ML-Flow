@@ -10,6 +10,7 @@ on:
  
 env:
   CSV_URL: "MLproject/train_pca.csv"
+  MLFLOW_TRACKING_URI: "file:///tmp/mlruns"
  
 jobs:
   build:
@@ -25,10 +26,11 @@ jobs:
         with:
           python-version: "3.12.7"
       
-      # Check Env Variables
+      # Cek env
       - name: Check Env
         run: |
-          echo $CSV_URL
+          echo "CSV_URL: $CSV_URL"
+          echo "MLFLOW_TRACKING_URI: $MLFLOW_TRACKING_URI"
  
       # Install mlflow
       - name: Install dependencies

@@ -11,36 +11,51 @@ import sys
 if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     np.random.seed(40)
- 
-    file_path = sys.argv[3] if len(sys.argv) > 3 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "train_pca.csv")
-    data = pd.read_csv(file_path)
- 
-    X_train, X_test, y_train, y_test = train_test_split(
-    data.drop("Credit_Score", axis=1),
-    data["Credit_Score"],
-    random_state=42,
-    test_size=0.2
+
+    # Set tracking URI ke /tmp/mlruns (aman untuk CI/CD)
+    mlflow.set_tracking_uri("file:///tmp/mlruns")
+
+    # Ambil dataset path
+    file_path = (
+        sys.argv[3]
+        if len(sys.argv) > 3
+        else os.path.join(os.path.dirname(os.path.abspath(__file__)), "train_pca.csv")
     )
-    input_example = X_train[0:5]
+    data = pd.read_csv(file_path)
+
+    # Split data
+    X_train, X_test, y_train, y_test = train_test_split(
+        data.drop("Credit_Score", axis=1),
+        data["Credit_Score"],
+        random_state=42,
+        test_size=0.2
+    )
+
+    # Ambil param dari CLI args
     n_estimators = int(sys.argv[1]) if len(sys.argv) > 1 else 505
     max_depth = int(sys.argv[2]) if len(sys.argv) > 2 else 37
- 
+
+    input_example = X_train.iloc[0:5]  # pakai .iloc buat aman
+
+    # MLflow run
     with mlflow.start_run():
         model = RandomForestClassifier(n_estimators=n_estimators, max_depth=max_depth)
         model.fit(X_train, y_train)
- 
-        predicted_qualities = model.predict(X_test)
- 
+
+        # Prediksi dan log model
+        predicted = model.predict(X_test)
         mlflow.sklearn.log_model(
-        sk_model=model,
-        artifact_path="model",
-        input_example=input_example
+            sk_model=model,
+            artifact_path="model",
+            input_example=input_example
         )
-        model.fit(X_train, y_train)
-        # Log metrics
+
+        # Log param dan metric
+        mlflow.log_param("n_estimators", n_estimators)
+        mlflow.log_param("max_depth", max_depth)
+
         accuracy = model.score(X_test, y_test)
         mlflow.log_metric("accuracy", accuracy)
-        
         
 # Mungkin tebersit di benak Anda sebuah pertanyaan “Mengapa kita menghapus tracking_uri? Bukankah dengan begitu kita tidak bisa menyimpan artefak dan metrics yang dihasilkan?” Jika Anda berpikir demikian, jawabannya adalah benar teman-teman. Namun, tracking_uri ini dapat digunakan kembali ketika Anda memiliki sebuah VM atau server yang terhubung dengan MLflow Tracking UI.  
 
