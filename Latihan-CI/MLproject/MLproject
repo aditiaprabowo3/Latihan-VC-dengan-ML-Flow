@@ -1,0 +1,49 @@
+
+name: latihan-cs-mlflow
+ 
+python_env: requirements.txt
+ 
+entry_points:
+  main:
+    parameters:
+      n_estimators: {type: int, default: 505}
+      max_depth: {type: int, default: 35}
+      dataset : {type: string, default: "train_pca.csv"}
+    command: "python modelling.py {n_estimators} {max_depth} {dataset}"
+
+# Kode di atas merupakan file konfigurasi MLflow Project yang berfungsi untuk mendefinisikan dan mengatur cara menjalankan proyek machine learning secara otomatis menggunakan MLflow Pipelines atau MLflow CLI. Tujuan utama dari file ini adalah untuk menyediakan struktur standar agar proyek dapat dijalankan di berbagai lingkungan dengan parameter yang terdefinisi sempurna.
+
+# Jika Anda perhatikan, terdapat tiga buah struktur utama dari file MLproject yang meliputi name, conda_env, dan entry_points. Kami yakin, beberapa dari Anda mungkin belum familier dengan struktur tersebut karena materi tersebut condong ke software engineering.
+
+# 1. name: latihan-cs-mlflow
+# Bagian ini mendefinisikan nama proyek sebagai latihan-cs-mlflow. Nama ini berguna sebagai identitas proyek ketika Anda menjalankan atau membagikan proyek tersebut. Dengan adanya nama ini proyek dapat dengan mudah dikenali, terutama jika ada banyak proyek yang serupa di lingkungan pengembangan Anda.
+
+# 2. python_env: requirements.txt
+# karena menggunakan virtual env python maa perlu requirements.txt kalau kamu:
+
+# ✅ Menggunakan MLflow dengan virtualenv
+# ✅ Ingin menjalankan proyek kamu secara reproducible (bisa dijalankan orang lain dengan hasil sama)
+# ✅ Mau integrasi ke CI/CD seperti GitHub Actions
+
+# Kenapa harus requirements.txt?
+# Karena:
+# - MLflow butuh tahu library apa saja yang diperlukan agar eksperimen bisa dijalankan di environment yang bersih.
+# - requirements.txt adalah standar Python untuk mencatat dependency.
+# - CI/CD (seperti GitHub Actions) atau mlflow run akan otomatis install semua library dari situ
+
+# 3. Entry_points:
+# Entry point adalah perintah yang akan dijalankan oleh MLflow ketika proyek dieksekusi. Dalam kode ini, hanya ada satu entry point bernama main, yang bertanggung jawab untuk menjalankan skrip modelling.py dengan parameters yang dapat disesuaikan untuk menjalankan command.
+
+# Parameter
+# Bagian ini mendefinisikan parameter yang bisa diubah oleh pengguna saat menjalankan proyek. Pada kasus ini kita akan menggunakan n_estimators, max_depth dan dataset. Jika Anda lupa mengenai hyperparameter yang digunakan silakan kunjungi kelas Machine Learning untuk Pemula, ya.
+
+# Command
+# Bagian ini mendefinisikan perintah yang akan dijalankan oleh MLflow saat entry point main dipanggil. Perintah ini menjalankan skrip Python bernama modelling.py dengan parameter yang dapat kita sesuaikan (ataupun dibiarkan default).
+
+# Sebagai informasi, nantinya Anda bisa menambahkan beberapa entry points yang berisikan perintah lainnya sesuai dengan proyek yang sedang dibangun.
+
+# Intinya, kode di atas memberikan fleksibilitas kepada pengguna sehingga dapat dengan mudah menjalankan eksperimen, bahkan dengan konfigurasi hyperparameter yang berbeda tanpa perlu mengubah kode asli secara manual.
+
+# Satu hal yang perlu Anda perhatikan yaitu mengenai nama file yang disimpan. Pastikan nama file beserta alamat penyimpanan yang dipanggil pada file MLproject dan .yaml memiliki nama yang sama. 
+
+# Setelah environment untuk membangun model sudah siap landas, Anda perlu membuat satu file modelling.py untuk membuat ulang model machine learning. Kurang lebih, isi file modelling ini sama dengan kode yang Anda gunakan ketika melatih model di lingkungan lokal komputer. Namun, terdapat beberapa perbedaan yang perlu Anda perhatikan. Sebelum kita menilik perbedaannya bersama-sama, silakan Anda amati kode berikut dan cari perbedaannya. 
