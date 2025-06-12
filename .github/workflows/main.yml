@@ -10,7 +10,6 @@ on:
  
 env:
   CSV_URL: "MLproject/train_pca.csv"
-  MLFLOW_TRACKING_URI: "file:///tmp/mlruns"
  
 jobs:
   build:
@@ -29,8 +28,7 @@ jobs:
       # Cek env
       - name: Check Env
         run: |
-          echo "CSV_URL: $CSV_URL"
-          echo "MLFLOW_TRACKING_URI: $MLFLOW_TRACKING_URI"
+            echo $CSV_URL
  
       # Install mlflow
       - name: Install dependencies
@@ -41,14 +39,13 @@ jobs:
       # Run as a mlflow project
       - name: Run mlflow project
         run: |
-          mlflow run . --env-manager=local 
+           mlflow run MLproject --env-manager=local
  
-      # Save models to GitHub Repository
-      - name: Commit and Push mlruns if changed
+       # Save models to GitHub Repository
+      - name: Save mlruns to repo
         run: |
-          git config --global user.name "${{ secrets.username }}"
-          git config --global user.email "${{ secrets.email }}"
+          git config --global user.name ${{ secrets.username }}
+          git config --global user.email ${{ secrets.email }}
           git add mlruns/
-          git diff --cached --quiet || git commit -m "Save mlruns from CI run"
-          git pull --rebase
-          git push origin main
+          git commit -m "Save mlruns from CI run"
+          git push origin master
