@@ -60,7 +60,6 @@ if __name__ == "__main__":
 # Mungkin tebersit di benak Anda sebuah pertanyaan “Mengapa kita menghapus tracking_uri? Bukankah dengan begitu kita tidak bisa menyimpan artefak dan metrics yang dihasilkan?” Jika Anda berpikir demikian, jawabannya adalah benar teman-teman. Namun, tracking_uri ini dapat digunakan kembali ketika Anda memiliki sebuah VM atau server yang terhubung dengan MLflow Tracking UI.  
 
 # Alasan latihan ini menghilangkan tracking_uri karena kita tidak akan menggunakan atau membuat VM/server (setidaknya sampai pada materi ini) untuk menyimpan seluruh metrics beserta artefak model yang dibuat. Selain itu, GitHub Actions sebagai platform untuk menjalankan CI pada proyek ini tidak dapat mengakses ip local atau remote repository MLflow Tracking UI. 
-
 # Lalu, bagaimana solusinya? Salah satu yang bisa dilakukan ketika tidak memiliki bucket, VM, Server, dan lain sebagainya yaitu menyimpan seluruh logging model pada repositori GitHub itu sendiri. 
 
 # Tentunya dengan menggunakan cara ini, Anda tidak dapat melihat UI dan membandingkan model secara langsung, tetapi hal itu bukan menjadi masalah besar. Asumsinya, penggunaan MLproject ini sudah diatur sedemikian rupa sehingga ketika dijalankan akan menghasilkan model terbaik yang sudah Anda hasilkan sebelumnya.
