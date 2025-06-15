@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/9c6e177f404c453bb500ba7e23f0c614/artifacts
+end_time: 1749716304598
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9c6e177f404c453bb500ba7e23f0c614
+run_name: debonair-toad-716
+run_uuid: 9c6e177f404c453bb500ba7e23f0c614
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749716093594
+status: 3
+tags: []
+user_id: Aditia Prabowo
